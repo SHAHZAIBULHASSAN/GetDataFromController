@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table table-bordered table-condensed table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>FirstName</th>
+            <th>lastName</th>
+            <th>Address</th>
+            <th>contactNumber</th>
+            <th>age</th>
+            <th>dob</th>
+            <th>salary</th>
+            <th>imageUrl</th>
+
+
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Home/Index",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                debugger;
+                var tr;
+                //Append each row to html table
+                for (var i = 0; i < data.length; i++) {
+                    tr = $('<tr/>');
+                    tr.append("<td>" + data[i].id + "</td>");
+                    tr.append("<td>" + data[i].firstName + "</td>");
+                    tr.append("<td>" + data[i].lastName + "</td>");
+                    tr.append("<td>" + data[i].address + "</td>");
+                    tr.append("<td>" + data[i].contactNumber + "</td>");
+                    tr.append("<td>" + data[i].age + "</td>");
+                    tr.append("<td>" + data[i].dob + "</td>");
+                    tr.append("<td>" + data[i].salary + "</td>");
+                    tr.append("<td>" + data[i].imageUrl + "</td>");
+                    $('table').append(tr);
+                }
+
+            },
+
+
+            error: function (response) {
+                alert('eror');
+            }
+        });
+    });
+
+
+</script>
